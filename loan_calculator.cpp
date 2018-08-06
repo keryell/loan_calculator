@@ -11,7 +11,7 @@
 
     \param f amount to finance
 
-    \param y yearly APR
+    \param y yearly APR (annual percentage rate)
 */
 void display_loan(double f, double y) {
   // Monthly rate in a rough approximation
@@ -28,8 +28,6 @@ void display_loan(double f, double y) {
 }
 
 int main() {
-  // Yearly APR interest of 0.9%
-  auto y = 0.009;
   // Amount to finance
   auto f = 26418.;
 
