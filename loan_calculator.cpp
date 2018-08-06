@@ -1,11 +1,19 @@
+/** \file Compute the cost of different loan combinations
+
+    https://en.wikipedia.org/wiki/Amortization_calculator
+*/
+
 #include <cmath>
 #include <iostream>
 
-int main() {
-  // Yearly APR interest of 0.9%
-  auto y = 0.009;
-  // Amount to finance
-  auto f = 26418.;
+
+/** Display the loan for a yearly APR
+
+    \param f amount to finance
+
+    \param y yearly APR
+*/
+void display_loan(double f, double y) {
   // Monthly rate in a rough approximation
   auto i = y/12;
   // Number of month for the loan
@@ -16,5 +24,17 @@ int main() {
 	      << ", total cost of " << a*n << std::endl;
     std::cout << "\toverhead of the loan: " << a*n - f
 	      << ", fraction of the loan: " << a*n/f - 1 << std::endl;
+  }
+}
+
+int main() {
+  // Yearly APR interest of 0.9%
+  auto y = 0.009;
+  // Amount to finance
+  auto f = 26418.;
+
+  for (auto y : { 0.009, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06 }) {
+    std::cout << "APR = " << y << std::endl;
+    display_loan(f, y);
   }
 }
