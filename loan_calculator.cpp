@@ -2,17 +2,19 @@
 #include <iostream>
 
 int main() {
-  // Number of month for the loan
-  auto n = 36;
   // Yearly APR interest of 0.9%
   auto y = 0.009;
   // Amount to finance
   auto f = 26418.;
   // Monthly rate in a rough approximation
   auto i = y/12;
-  auto a = f*(i + i/(std::pow(1 + i, n) - 1));
-  std::cout << "Monthly payment of " << a << std::endl;
-  std::cout << "Total cost of " << a*n << std::endl;
-  std::cout << "Overhead of the loan " << a*n - f << std::endl;
-  std::cout << "Overhead fraction of the loan " << a*n/f - 1 << std::endl;  
+  // Number of month for the loan
+  for (auto n = 12; n <= 72; n += 12) {
+    auto a = f*(i + i/(std::pow(1 + i, n) - 1));
+    std::cout << "For " << n << "months:"<< std::endl;
+    std::cout << "\tmonthly payment of " << a
+	      << ", total cost of " << a*n << std::endl;
+    std::cout << "\toverhead of the loan: " << a*n - f
+	      << ", fraction of the loan: " << a*n/f - 1 << std::endl;
+  }
 }
